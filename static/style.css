@@ -1,0 +1,277 @@
+/* ===============================
+   Hotel Reservation Prediction – Green Theme CSS
+   =============================== */
+
+/* ------- CSS Variables (Theme) ------- */
+:root{
+  /* Core background tones */
+  --bg: #023020;     /* Dark Green requested */
+  --bg-2: #01261a;   /* Deeper green for vertical blend */
+
+  /* Glass card + text */
+  --card: rgba(255,255,255,0.08);
+  --text: #eaf7f1;   /* Off-white with a hint of green */
+  --muted: #a7c3b6;
+
+  /* Accents (greens) */
+  --accent: #198754;   /* rich green (focus/buttons) */
+  --accent-2: #20c997; /* emerald tint for gradients */
+
+  /* Status colors */
+  --ok: #20c997;
+  --warn: #ffb020;
+  --err: #ff5c7c;
+
+  --border: rgba(255,255,255,0.12);
+  --shadow: 0 10px 30px rgba(0,0,0,0.35);
+}
+
+/* Light mode palette */
+@media (prefers-color-scheme: light){
+  :root{
+    --bg: #e8f3ee;    /* pale minty background */
+    --bg-2: #dff0e9;
+    --card: rgba(255,255,255,0.9);
+    --text: #10251c;
+    --muted: #4a6a5c;
+    --accent: #198754;
+    --accent-2: #20c997;
+    --border: rgba(0,0,0,0.08);
+    --shadow: 0 12px 32px rgba(16, 37, 28, 0.12);
+  }
+}
+
+/* ------- Reset / Base ------- */
+*,
+*::before,
+*::after{ box-sizing: border-box; }
+
+html, body{
+  height: 100%;
+}
+
+body{
+  margin: 0;
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans";
+  color: var(--text);
+  background:
+    radial-gradient(1200px 600px at 10% -10%, rgba(40,167,69,.15), transparent 60%),
+    radial-gradient(800px 400px at 110% 10%, rgba(32,201,151,.14), transparent 60%),
+    linear-gradient(180deg, var(--bg), var(--bg-2));
+  min-height: 100%;
+  line-height: 1.5;
+}
+
+@keyframes float-bg {
+  0% { background-position: 0 0, 0 0, 0 0; }
+  50% { background-position: 10px -6px, -6px 10px, 0 0; }
+  100% { background-position: 0 0, 0 0, 0 0; }
+}
+@media (prefers-reduced-motion: no-preference){
+  body{ animation: float-bg 18s ease-in-out infinite; }
+}
+
+/* ------- Layout ------- */
+.container{
+  max-width: 760px;
+  margin: clamp(16px, 6vh, 56px) auto;
+  padding: clamp(16px, 3vw, 36px);
+  background: var(--card);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  box-shadow: var(--shadow);
+  transform: translateY(8px);
+  opacity: 0;
+  animation: cardIn .7s cubic-bezier(.2,.8,.2,1) .1s forwards;
+}
+
+@keyframes cardIn{
+  to{ opacity: 1; transform: translateY(0); }
+}
+
+h2{
+  margin: 0 0 18px;
+  font-size: clamp(22px, 2.2vw, 32px);
+  letter-spacing: .2px;
+  display: inline-flex;
+  align-items: center;
+  gap: .6ch;
+}
+h2::after{
+  content: "❤️";
+  font-size: .9em;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,.2));
+}
+
+/* ------- Form ------- */
+form{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px clamp(14px, 2vw, 22px);
+}
+
+@media (max-width: 720px){
+  form{ grid-template-columns: 1fr; }
+}
+
+.form-group{
+  display: grid;
+  gap: 8px;
+  position: relative;
+  padding: 10px;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  transition: border-color .2s ease, background-color .2s ease, box-shadow .2s ease;
+  background: rgba(0,0,0,0.05);
+}
+.form-group:hover{
+  border-color: color-mix(in oklab, var(--accent) 35%, var(--border));
+}
+.form-group:focus-within{
+  border-color: color-mix(in oklab, var(--accent) 55%, var(--border));
+  box-shadow: 0 0 0 6px color-mix(in oklab, var(--accent) 16%, transparent);
+  background: rgba(0,0,0,0.07);
+}
+
+label{
+  font-size: .9rem;
+  color: var(--muted);
+  transition: color .2s ease, transform .2s ease;
+}
+.form-group:focus-within label{
+  color: var(--accent-2);
+  transform: translateY(-1px);
+}
+
+/* Inputs / selects */
+input[type="number"],
+select{
+  width: 100%;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  padding: 12px 14px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: white;   /* white background */
+  color: black;        /* black text */
+  font-size: 1rem;
+  outline: none;
+  transition: border-color .2s ease, box-shadow .2s ease, background-color .2s ease, transform .05s ease;
+}
+input[type="number"]:focus,
+select:focus{
+  border-color: color-mix(in oklab, var(--accent) 60%, var(--border));
+  box-shadow: 0 0 0 4px color-mix(in oklab, var(--accent) 18%, transparent);
+  background: #fdfdfd;
+}
+input[type="number"]:active,
+select:active{
+  transform: translateY(1px);
+}
+
+/* Remove number spinners (WebKit) */
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button{
+  -webkit-appearance: none; margin: 0;
+}
+/* Remove for Firefox */
+input[type="number"]{ -moz-appearance: textfield; }
+
+/* Custom select arrow */
+select{
+  background-image:
+    linear-gradient(45deg, transparent 50%, var(--muted) 50%),
+    linear-gradient(135deg, var(--muted) 50%, transparent 50%);
+  background-position:
+    calc(100% - 18px) calc(50% - 3px),
+    calc(100% - 13px) calc(50% - 3px);
+  background-size: 6px 6px, 6px 6px;
+  background-repeat: no-repeat;
+  padding-right: 42px;
+}
+
+/* Button */
+button[type="submit"]{
+  grid-column: 1 / -1;
+  align-self: start;
+  justify-self: start;
+  border: 0;
+  border-radius: 12px;
+  padding: 12px 18px;
+  font-size: 1rem;
+  font-weight: 600;
+  color: white;
+  cursor: pointer;
+  background-image: linear-gradient(135deg, var(--accent), var(--accent-2));
+  box-shadow: 0 10px 20px rgba(40,167,69,.25), 0 4px 10px rgba(32,201,151,.18);
+  transition: transform .08s ease, filter .2s ease, box-shadow .2s ease;
+}
+button[type="submit"]:hover{
+  filter: brightness(1.03);
+  box-shadow: 0 12px 24px rgba(40,167,69,.32), 0 6px 14px rgba(32,201,151,.22);
+}
+button[type="submit"]:active{
+  transform: translateY(1px) scale(.99);
+}
+
+/* ------- Result Banner ------- */
+.result{
+  margin-top: 22px;
+  padding: 14px;
+  border-radius: 14px;
+  border: 1px solid var(--border);
+  background: rgba(0,0,0,0.06);
+  animation: pulseIn .5s ease-out both;
+}
+.result p{
+  margin: 0;
+  font-weight: 600;
+  letter-spacing: .2px;
+}
+
+.result.ok{ border-color: color-mix(in oklab, var(--ok) 50%, var(--border)); background: color-mix(in oklab, var(--ok) 12%, transparent); }
+.result.warn{ border-color: color-mix(in oklab, var(--warn) 50%, var(--border)); background: color-mix(in oklab, var(--warn) 12%, transparent); }
+.result.err{ border-color: color-mix(in oklab, var(--err) 50%, var(--border)); background: color-mix(in oklab, var(--err) 12%, transparent); }
+
+@keyframes pulseIn{
+  0%{ opacity: 0; transform: scale(.98); }
+  100%{ opacity: 1; transform: scale(1); }
+}
+
+/* ------- Progressive Enhancement ------- */
+:focus-visible{
+  outline: 3px solid color-mix(in oklab, var(--accent) 60%, transparent);
+  outline-offset: 2px;
+  border-radius: 10px;
+}
+
+/* ------- Tiny polish ------- */
+::selection{
+  background: color-mix(in oklab, var(--accent) 35%, transparent);
+  color: white;
+}
+
+.form-group{
+  opacity: 0; transform: translateY(6px);
+  animation: groupIn .5s ease forwards;
+}
+.form-group:nth-child(1){ animation-delay: .06s; }
+.form-group:nth-child(2){ animation-delay: .09s; }
+.form-group:nth-child(3){ animation-delay: .12s; }
+.form-group:nth-child(4){ animation-delay: .15s; }
+.form-group:nth-child(5){ animation-delay: .18s; }
+.form-group:nth-child(6){ animation-delay: .21s; }
+.form-group:nth-child(7){ animation-delay: .24s; }
+.form-group:nth-child(8){ animation-delay: .27s; }
+.form-group:nth-child(9){ animation-delay: .30s; }
+.form-group:nth-child(10){ animation-delay: .33s; }
+
+@keyframes groupIn{
+  to{ opacity: 1; transform: translateY(0); }
+}
+
+@media (prefers-reduced-motion: reduce){
+  * { animation: none !important; transition: none !important; }
+}

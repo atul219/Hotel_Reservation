@@ -58,7 +58,6 @@ class DataIngestion:
             logger.info(f"Data ingestion completed")
         except Exception as e:
             logger.error(f"Custiom exception: {str(e)}")
-        finally:
-            logger.info(f"Data ingestion completed")
+            raise CustomException("Error in data ingestion", e)
 
             
