@@ -46,15 +46,9 @@ pipeline{
 
                         gcloud auth configure-docker --quiet
 
-                        # Ensure buildx is active (no-op if already created)
-                        docker buildx create --use || true
+                        docker build -t gcr.io/${GCP_PROJECT}/ml-project:latest .
 
-                        # Build with secret; push (or use --load + docker push if you prefer)
-                        docker buildx build \
-                            --secret id=gcp_key,src="${GOOGLE_APPLICATION_CREDENTIALS}" \
-                            -t gcr.io/${GCP_PROJECT}/ml-project:latest \
-                            --push \
-                            .
+                        docker push gcr.io/${GCP_PROJECT}/ml-project:latest 
 
                         '''
                     }
