@@ -46,7 +46,9 @@ pipeline{
 
                         gcloud auth configure-docker --quiet
 
-                        docker build -t gcr.io/${GCP_PROJECT}/ml-project:latest .
+                        docker build \
+                            --secret id=gcp_key,src="${GOOGLE_APPLICATION_CREDENTIALS}" \
+                            -t gcr.io/${GCP_PROJECT}/ml-project:latest .
 
                         docker push gcr.io/${GCP_PROJECT}/ml-project:latest 
 
