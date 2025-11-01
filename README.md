@@ -60,8 +60,8 @@ cd Hotel_Reservation
 
 ### 2️⃣ Create and Activate Environment
 ```bash
-conda create -n network-security python=3.12 -y
-conda activate network-security
+conda create -p venv python=3.12 -y
+conda activate venv
 ```
 
 ### 3️⃣ Install Dependencies
@@ -78,7 +78,7 @@ pip install -e .
 
 ### 5. Running the application
 ```bash
-python app.py
+python application.py
 ```
 
 ## 📊 Visualization and Analysis
