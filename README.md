@@ -1,16 +1,9 @@
 # 🏨 Hotel_Reservation - End-to-End Hotel Booking and Management System
 
-A comprehensive hotel reservation system that handles everything from user registration and room booking to payment processing and administrative management. This project demonstrates a full-stack implementation with scalable design and deployment support.
+A comprehensive hotel reservation system that predicts whether a customer will cancel their booking or not. This project demonstrates a full-stack implementation with scalable design and deployment support.
 
 ---
 
-## 🚀 Project Overview
-
-**Hotel_Reservation** is an end-to-end hotel management and reservation project designed to automate hotel booking operations.  
-It allows users to search for rooms, make reservations, and complete payments online, while administrators can manage inventory, bookings, and analytics.  
-The project follows a modular architecture integrating **web development**, **database management**, and **CI/CD automation**.
-
----
 
 ## 📁 Project Structure
 
