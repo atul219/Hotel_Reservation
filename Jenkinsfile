@@ -5,6 +5,7 @@ pipeline{
         VENV_DIR = 'venv'
         GCP_PROJECT = "automated-lodge-476410-h0"
         GCLOUD_PATH = "/var/jenkins_home/google-cloud-sdk/bin"
+        DOCKER_HOST = 'tcp://jenkins-dind:2375'
     }
 
     stages{
